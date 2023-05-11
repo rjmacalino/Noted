@@ -1,4 +1,5 @@
 require ('dotenv').config()
+
 const express = require('express')
 const app = express()
 const PORT = process.env.PORT || 3500
@@ -14,7 +15,6 @@ const mongoose = require('mongoose')
 
 connectDb()
 
-
 console.log(`${process.env.NODE_ENV} mode`)
 
 app.use(logger)
@@ -28,6 +28,11 @@ app.use(cookieParser())
 app.use(express.static(path.join(__dirname, '/public')))
 
 app.use('/', require('./routes/root'))
+
+// routes for users
+
+app.use('/users', require('./routes/userRoutes'))
+
 
 app.all('*', (req, res) => {
     res.status(404)
