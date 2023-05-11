@@ -9,8 +9,6 @@ const cors = require('cors');
 const corsOptions = require('./config/corsOptions');
 
 
-
-
 app.use(logger);
 
 app.use(cors(corsOptions));
