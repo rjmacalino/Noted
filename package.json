@@ -1,5 +1,5 @@
 {
-  "name": "technotes",
+  "name": "Noted",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@alec016/mongoose-autoincrement": "^1.3.4",
     "bcrypt": "^5.1.0",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
@@ -20,7 +21,6 @@
     "express": "^4.18.2",
     "express-async-handler": "^1.2.0",
     "mongoose": "^7.1.1",
-    "mongoose-sequence": "^5.3.1",
     "uuid": "^9.0.0"
   },
   "devDependencies": {
