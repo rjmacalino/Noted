@@ -1,35 +1,40 @@
-const mongoose = require('mongoose');
-const AutoIncrement = require('mongoose-sequence')(mongoose);
+const mongoose = require('mongoose')
+const autoIncrement = require('@alec016/mongoose-autoincrement');
+
+const connection = mongoose.connection
+autoIncrement.initialize(connection);
+
 
 const noteSchema = new mongoose.Schema(
-    {  
-    User: {
-        type: mongoose.Schema.Types.ObjectId,
-        required: true,
-        ref: 'User'
+    {
+        user: {
+            type: mongoose.Schema.Types.ObjectId,
+            required: true,
+            ref: 'User'
+        },
+        title: {
+            type: String,
+            required: true
+        },
+        text: {
+            type: String,
+            required: true
+        },
+        completed: {
+            type: Boolean,
+            default: false
+        }
     },
-    Title: {
-        type: String,
-        required: true
-    },
-    text: {
-        type: String,
-        required: true
-    },
-    completed: {
-        type: Boolean,
-        default: false
-    },
-    },
-
     {
         timestamps: true
     }
-);
+)
 
-noteSchema.plugin(AutoIncrement, {
-    inc_field: 'ticket',
-    id: 'ticketNums',
-    start_seq: 500});
 
-module.exports = mongoose.model('Note', noteSchema);
+noteSchema.plugin(autoIncrement.plugin, {
+    model: 'Note',
+    field: 'ticket',
+    startAt: 500
+})
+
+module.exports = mongoose.model('Note', noteSchema)
